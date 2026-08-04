@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Purity, your sanctuary for mindfulness and wellness. Explore our services including meditation, yoga, affirmations, and personal growth workshops designed to help you achieve inner peace and balance. Join Purity today and embark on your journey to a healthier mind and body.">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    >
+
+    <!-- CSS link -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+
+    <title>Purity</title>
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+   
+ <!-- Navigation -->
+   
+    <nav class="navbar navbar-expand-md fixed-top" style="background-color: #ffffff;" data-bs-theme="light">
+      <div class="container">
+        <a class="navbar-brand" href="index.html"
+          ><img src="assets/images/lal-logo.webp" alt="Lume & Lens Logo"
+        ></a>
+    
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav ms-auto">
+            <a class="nav-link" aria-current="page" href="index.html">HOME</a>
+            <a class="nav-link" href="portfolio.html">PORTFOLIO</a>
+            <a class="nav-link" href="index.html#services">SERVICES</a>
+            <a class="nav-link" href="index.html#about">ABOUT</a>
+            <a class="nav-link" href="index.html#contact-form">CONTACT</a>
+            </div>
+            <div class="row text-center my-2 ms-auto"></div>
+                    <div class="text-center">
+                        <a
+                            class="text-reset text-decoration-none mx-2"
+                            href="https://www.instagram.com/"
+                            target="_blank"
+                            rel="noopener"
+                            aria-label="Visit our Instagram page (opens in new tab)">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a
+                            class="text-reset text-decoration-none mx-2"
+                            href="https://www.facebook.com/"
+                            target="_blank"
+                            rel="noopener"
+                            aria-label="Visit our Facebook page (opens in new tab)">
+                            <i class="fa-brands fa-facebook"></i>
+                        </a>
+                        <a
+                            class="text-reset text-decoration-none mx-2"
+                            href="https://www.youtube.com/"
+                            target="_blank"
+                            rel="noopener"
+                            aria-label="Visit our YouTube page (opens in new tab)">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                        <a
+                            class="text-reset text-decoration-none mx-2"
+                            href="https://www.tiktok.com/"
+                            target="_blank"
+                            rel="noopener"
+                            aria-label="Visit our TikTok page (opens in new tab)">
+                            <i class="fa-brands fa-tiktok"></i>
+                        </a>
+                    </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero section -->
+      <main>
+        <section class="hero-success">
+        <div class="success-message text-center position-absolute top-50 start-50 translate-middle z-index-2">
+            <h1>Thank you for getting in touch!</h1>
+            <p>We appreciate you contacting Purity. One of our colleagues will get back in touch with you soon!</p>
+            <p>Have a great day!</p>
+
+             <!-- Home Button -->
+        <div class="text-center mt-5">
+        <a
+          href="index.html"
+          class="btn btn-outline-light position-absolute translate-middle z-index-2">
+          Home
+        </a>
+        </div>
+        </div>
+        </section>
+      <div style="height: 700px;">
+        </div>
+       
+  
+   
+        <!-- Footer -->
+
+        <section id="success-footer" class="container-fluid section">
+           <!-- Footer -->
+
+        <section id="footer" class="container-fluid section">
+          <footer class="mt-auto">
+            <div class="row justify-content-center">
+            <div class="container section">
+                <div class="text-center mb-3">
+                  <h3 class="mb-3">Contact info</h3>
+                  <p><i class="fa-solid fa-at"></i> info@lumeandlens.co.uk<br>
+                  <i class="fa-solid fa-phone"></i> (44) 456-7890<br>
+                  <i class="fa-solid fa-copyright"></i> Lume & Lens 2026.</p>
+                   <p><i class="fa-solid fa-map-pin"></i>Birmingham, United Kingdom</p>
+                  </div>
+                  <div class="row justify-content-center">
+                    
+                  </div>
+                  </div>
+
+                  
+            </div>
+          </footer>
+        </section>
+      </main>
+
+    <!-- Bootstrap 5 JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Font Awesome -->
+    <script
+      src="https://kit.fontawesome.com/5ca234e80d.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+    document
+        .querySelectorAll(".navbar-collapse .nav-link")
+        .forEach((link) => {
+            link.addEventListener("click", function (e) {
+                let section = document.querySelector(e.target.getAttribute("href"));
+                if (section) {
+                    e.preventDefault(); // Prevent default anchor click behavior
+                    let navbarHeight = document.querySelector(".navbar-toggler").offsetHeight;
+                    window.scroll({
+                        top: section.offsetTop - navbarHeight, // Adjust for navbar height
+                        behavior: "smooth",
+                    });
+                    document
+                        .querySelector(".navbar-collapse")
+                        .classList.remove("show"); // Collapse navbar
+                }
+            });
+        });
+</script>
+  </body>
+</html>
