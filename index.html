@@ -106,11 +106,16 @@
             
             /* Add padding to top of page */
             body { padding-top: 80px; }
+
+            /* carousel scaling: default and mobile override */
+            #carousel { transform: scale(0.80); transform-origin: center top; }
+            @media (max-width: 767.98px) {
+                #carousel { transform: scale(0.95) !important; }
+            }
         </style>
 </header>
 
-        <div id="carousel" class="carousel slide" data-bs-ride="carousel" style="transform: scale(0.80
-    );">
+        <div id="carousel" class="carousel slide" data-bs-ride="carousel">
             
             <div class="carousel-inner">
                 <div class="carousel-item active">

@@ -113,107 +113,102 @@
         <div class="row g-3" role="list">
             <div class="col-6 col-sm-4 col-md-3" role="listitem">
                 <button type="button" class="btn btn-link p-0 w-100" data-bs-toggle="modal" data-bs-target="#portfolioModal"
-                    data-bs-image="assets/images/JQ.webp" data-bs-title="Project 1 — Commercial">
-                    <img src="assets/images/JQ.webp" class="img-fluid rounded no-download" alt="Thumbnail for Project 1" loading="lazy"
-                         draggable="false" oncontextmenu="return false;" onmousedown="return false;">
+                    data-bs-image="assets/images/JQ.avif" data-bs-title="Project 1">
+                    <img src="assets/images/JQ.avif" class="img-fluid rounded" alt="Thumbnail for Project 1" loading="lazy" draggable="false" oncontextmenu="return false;">
                 </button>
             </div>
 
             <div class="col-6 col-sm-4 col-md-3" role="listitem">
                 <button type="button" class="btn btn-link p-0 w-100" data-bs-toggle="modal" data-bs-target="#portfolioModal"
-                    data-bs-image="assets/images/Hall2.webp" data-bs-title="Project 2 — Interiors">
-                    <img src="assets/images/Hall2.webp" class="img-fluid rounded no-download" alt="Thumbnail for Project 2" loading="lazy"
-                         draggable="false" oncontextmenu="return false;" onmousedown="return false;">
+                    data-bs-image="assets/images/lamp.avif" data-bs-title="Project 2">
+                    <img src="assets/images/lamp.avif" class="img-fluid rounded" alt="Thumbnail for Project 2" loading="lazy" draggable="false" oncontextmenu="return false;">
                 </button>
             </div>
 
             <div class="col-6 col-sm-4 col-md-3" role="listitem">
                 <button type="button" class="btn btn-link p-0 w-100" data-bs-toggle="modal" data-bs-target="#portfolioModal"
-                    data-bs-image="assets/images/Bathroom.webp" data-bs-title="Project 3 — Portrait">
-                    <img src="assets/images/Bathroom.webp" class="img-fluid rounded no-download" alt="Thumbnail for Project 3" loading="lazy"
-                         draggable="false" oncontextmenu="return false;" onmousedown="return false;">
+                    data-bs-image="assets/images/Bathroom.avif" data-bs-title="Project 3">
+                    <img src="assets/images/Bathroom.avif" class="img-fluid rounded" alt="Thumbnail for Project 3" loading="lazy" draggable="false" oncontextmenu="return false;">
                 </button>
             </div>
 
             <div class="col-6 col-sm-4 col-md-3" role="listitem">
                 <button type="button" class="btn btn-link p-0 w-100" data-bs-toggle="modal" data-bs-target="#portfolioModal"
-                    data-bs-image="assets/images/Garden.webp" data-bs-title="Project 4 — Product">
-                    <img src="assets/images/Garden.webp" class="img-fluid rounded no-download" alt="Thumbnail for Project 4" loading="lazy"
-                         draggable="false" oncontextmenu="return false;" onmousedown="return false;">
+                    data-bs-image="assets/images/Garden.avif" data-bs-title="Project 4">
+                    <img src="assets/images/Garden.avif" class="img-fluid rounded" alt="Thumbnail for Project 4" loading="lazy" draggable="false" oncontextmenu="return false;">
                 </button>
             </div>
         </div>
 
-        <!-- Modal to show larger image -->
+        <!-- Modal to show larger images as a gallery -->
         <div class="modal fade" id="portfolioModal" tabindex="-1" aria-hidden="true">
-            <!-- Use modal-xl for a larger dialog and modal-fullscreen-sm-down to make it fullscreen on small screens -->
             <div class="modal-dialog modal-dialog-centered modal-xl modal-fullscreen-sm-down">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title"></h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body text-center">
-                        <!-- Increase max-height so the image appears larger while staying within the viewport -->
-                        <img src="" alt="" class="img-fluid rounded no-download" style="max-height:90vh; width:auto;"
-                             draggable="false" oncontextmenu="return false;" onmousedown="return false;">
+                    <div class="modal-body p-0">
+                        <div id="portfolioGallery" class="carousel slide" data-bs-ride="false">
+                            <div class="carousel-indicators"></div>
+                            <div class="carousel-inner"></div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#portfolioGallery" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#portfolioGallery" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <style>
-            /* soft protections to discourage saving/downloading */
-            .no-download {
-                -webkit-user-drag: none;
-                -khtml-user-drag: none;
-                -moz-user-select: none;
-                -webkit-user-select: none;
-                user-select: none;
-                -webkit-touch-callout: none; /* iOS Safari */
-            }
-        </style>
-
         <script>
             (function () {
+                var portfolioSection = document.getElementById('portfolio-thumbs');
                 var modalEl = document.getElementById('portfolioModal');
-                if (!modalEl) return;
+                var galleryEl = document.getElementById('portfolioGallery');
+                var indicatorsEl = galleryEl.querySelector('.carousel-indicators');
+                var innerEl = galleryEl.querySelector('.carousel-inner');
+                var buttons = Array.prototype.slice.call(portfolioSection.querySelectorAll('button[data-bs-image]'));
 
-                // Populate modal when opening
+                if (!modalEl || !galleryEl || !buttons.length) return;
+
+                buttons.forEach(function (button, index) {
+                    var imgSrc = button.getAttribute('data-bs-image') || '';
+                    var title = button.getAttribute('data-bs-title') || 'Image ' + (index + 1);
+                    var img = button.querySelector('img');
+                    var altText = img ? img.getAttribute('alt') || title : title;
+
+                    var indicator = document.createElement('button');
+                    indicator.type = 'button';
+                    indicator.setAttribute('data-bs-target', '#portfolioGallery');
+                    indicator.setAttribute('data-bs-slide-to', index);
+                    indicator.setAttribute('aria-label', title);
+                    if (index === 0) {
+                        indicator.className = 'active';
+                        indicator.setAttribute('aria-current', 'true');
+                    }
+                    indicatorsEl.appendChild(indicator);
+
+                    var item = document.createElement('div');
+                    item.className = 'carousel-item' + (index === 0 ? ' active' : '');
+                    item.innerHTML = '<img src="' + imgSrc + '" class="d-block mx-auto img-fluid rounded" alt="' + altText + '" draggable="false" oncontextmenu="return false;" style="max-height:90vh; width:auto; object-fit:contain;">' +
+                        '<div class="carousel-caption d-none d-md-block"><h5>' + title + '</h5></div>';
+                    innerEl.appendChild(item);
+                });
+
                 modalEl.addEventListener('show.bs.modal', function (event) {
                     var trigger = event.relatedTarget;
-                    var img = trigger.getAttribute('data-bs-image') || '';
-                    var title = trigger.getAttribute('data-bs-title') || '';
-                    var modalImg = modalEl.querySelector('.modal-body img');
-                    modalEl.querySelector('.modal-title').textContent = title;
-                    modalImg.src = img;
-                    modalImg.alt = title;
-                });
+                    var index = buttons.indexOf(trigger);
+                    if (index < 0) index = 0;
 
-                // Prevent context menu and dragging on the modal and thumbnails
-                var container = document.getElementById('portfolio-thumbs');
-                container.addEventListener('contextmenu', function (e) {
-                    // allow context menu on other controls (e.g. buttons) if needed
-                    if (e.target && e.target.tagName === 'IMG') {
-                        e.preventDefault();
-                    }
-                });
-
-                // Prevent common save shortcuts while modal is open (best-effort)
-                modalEl.addEventListener('shown.bs.modal', function () {
-                    window._savedKeyHandler = function (e) {
-                        // Ctrl/Cmd+S or Ctrl/Cmd+U
-                        if ((e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'S' || e.key === 'u' || e.key === 'U')) {
-                            e.preventDefault();
-                        }
-                    };
-                    window.addEventListener('keydown', window._savedKeyHandler);
-                });
-                modalEl.addEventListener('hidden.bs.modal', function () {
-                    if (window._savedKeyHandler) {
-                        window.removeEventListener('keydown', window._savedKeyHandler);
-                        window._savedKeyHandler = null;
-                    }
+                    var carousel = bootstrap.Carousel.getOrCreateInstance(galleryEl, { ride: false });
+                    carousel.to(index);
+                    modalEl.querySelector('.modal-title').textContent = trigger.getAttribute('data-bs-title') || '';
                 });
             })();
         </script>
@@ -257,7 +252,7 @@
                             </div>
                         </div>
                         <div class="text-center">
-                        <button type="submit" class="btn btn-outline-secondary mb-4 mt-3">Submit</button>
+                        <button type="submit" class="btn btn-outline-dark mb-4 mt-3">Submit</button>
                         </div>
                     </form>
                 </div>
@@ -270,7 +265,7 @@
           <footer class="mt-auto">
             <div class="row justify-content-center">
             <div class="container section">
-                <div class="text-center mb-3">
+                <div class="text-center my-3">
                   <h3 class="mb-3">Contact info</h3>
                   <p><i class="fa-solid fa-at"></i> info@lumeandlens.co.uk<br>
                   <i class="fa-solid fa-phone"></i> (44) 456-7890<br>
