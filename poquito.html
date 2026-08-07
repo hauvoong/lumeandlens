@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Purity, your sanctuary for mindfulness and wellness. Explore our services including meditation, yoga, affirmations, and personal growth workshops designed to help you achieve inner peace and balance. Join Purity today and embark on your journey to a healthier mind and body.">
+     <title>Lume & Lens</title>
+        
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    >
+
+    <!-- CSS link -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/assets/images/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg" />
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png" />
+    <link rel="manifest" href="/assets/images/site.webmanifest" />
+
+  </head>
+  <body>
+<!-- Password gate -->
+<style>
+    #password-gate {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.72);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1080;
+    }
+    #password-gate .card {
+        width: 320px;
+        max-width: calc(100% - 32px);
+        padding: 1.25rem;
+        border-radius: .5rem;
+        box-shadow: 0 .5rem 1.25rem rgba(0,0,0,.5);
+        background: #fff;
+        text-align: center;
+    }
+    #password-gate input[type="password"]{
+        width: 100%;
+        margin-top: .5rem;
+    }
+    #password-gate .error {
+        color: #b00020;
+        font-size: .9rem;
+        margin-top: .5rem;
+        display: none;
+    }
+    @keyframes shake {
+        0% { transform: translateX(0); }
+        20% { transform: translateX(-8px); }
+        40% { transform: translateX(8px); }
+        60% { transform: translateX(-6px); }
+        80% { transform: translateX(6px); }
+        100% { transform: translateX(0); }
+    }
+    #password-gate.shake .card { animation: shake .45s; }
+</style>
+
+<div id="password-gate" role="dialog" aria-modal="true" aria-label="Password required">
+    <div class="card">
+        <h4 class="mb-2">Enter password to continue</h4>
+        <form id="password-form" novalidate>
+            <label for="page-password" class="visually-hidden">Password</label>
+            <input id="page-password" type="password" class="form-control" autocomplete="current-password" placeholder="Password" required aria-required="true" />
+            <div class="error" id="password-error" role="alert">Incorrect password. Try again.</div>
+            <div class="mt-3">
+                <button type="submit" class="btn btn-secondary">Unlock</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    (function () {
+        const GATE_ID = 'password-gate';
+        const PASSWORD = 'tapas26'; // change this to your desired password
+
+        const gate = document.getElementById(GATE_ID);
+        const form = document.getElementById('password-form');
+        const input = document.getElementById('page-password');
+        const error = document.getElementById('password-error');
+
+        // Always require password on each page load/refresh (no storage used)
+
+        // Focus the input when shown
+        input.focus();
+
+        // Prevent keyboard interaction with the page behind the overlay
+        document.addEventListener('focus', function(ev){
+            if (gate.style.display !== 'none' && !gate.contains(ev.target)) {
+                ev.stopPropagation();
+                input.focus();
+            }
+        }, true);
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            error.style.display = 'none';
+            gate.classList.remove('shake');
+
+            const value = input.value || '';
+            if (value === PASSWORD) {
+                // hide gate for this page session (will reappear on refresh)
+                gate.style.transition = 'opacity .25s ease';
+                gate.style.opacity = '0';
+                setTimeout(() => { gate.style.display = 'none'; }, 260);
+            } else {
+                error.style.display = 'block';
+                gate.classList.add('shake');
+                input.value = '';
+                input.focus();
+            }
+        });
+
+        // Allow Enter key from input to submit (form handles it), Esc to clear
+        input.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                input.value = '';
+                error.style.display = 'none';
+            }
+        });
+    })();
+</script>
+    
+    <!-- Navigation -->
+
+    <nav class="navbar navbar-expand-md fixed-top" style="background-color: #ffffff;" data-bs-theme="light">
+
+      <div class="container">
+        <a class="navbar-brand" href="index.html"
+          ><img src="assets/images/lal-logo.webp" alt="Lume & Lens Logo"
+        ></a>
+    
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav ms-auto">
+            <a class="nav-link" href="https://www.lumeandlens.co.uk/">HOME</a>
+            <a class="nav-link" href="https://www.lumeandlens.co.uk/portfolio.html">PORTFOLIO</a>
+            <a class="nav-link" href="https://www.lumeandlens.co.uk/#services">SERVICES</a>
+            <a class="nav-link" href="https://www.lumeandlens.co.uk/#about">ABOUT</a>
+            <a class="nav-link" href="https://www.lumeandlens.co.uk/#contact-form">CONTACT</a>
+            </div>
+            <div class="row text-center my-2 ms-auto"></div>
+                    <div class="text-center">
+                        <a
+                            class="text-reset text-decoration-none mx-2"
+                            href="https://www.instagram.com/"
+                            target="_blank"
+                            rel="noopener"
+                            aria-label="Visit our Instagram page (opens in new tab)">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a
+                            class="text-reset text-decoration-none mx-2"
+                            href="https://www.facebook.com/"
+                            target="_blank"
+                            rel="noopener"
+                            aria-label="Visit our Facebook page (opens in new tab)">
+                            <i class="fa-brands fa-facebook"></i>
+                        </a>
+                        <a
+                            class="text-reset text-decoration-none mx-2"
+                            href="https://www.youtube.com/"
+                            target="_blank"
+                            rel="noopener"
+                            aria-label="Visit our YouTube page (opens in new tab)">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                        <a
+                            class="text-reset text-decoration-none mx-2"
+                            href="https://www.tiktok.com/"
+                            target="_blank"
+                            rel="noopener"
+                            aria-label="Visit our TikTok page (opens in new tab)">
+                            <i class="fa-brands fa-tiktok"></i>
+                        </a>
+                    </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero section -->
+    
+    <header class="hero" style="transform: scale(0.80); transform-origin: center top; width: 100%; height: 100%; padding-top: var(--navbar-offset);">
+        
+        <style>
+            /* start the hero 96px below the top of the site */
+            :root { --navbar-offset: 96px; }
+            
+            
+            
+        </style>
+</header>
+    <main>
+
+         <! -- Downloadable content section -- !>
+    <section id="downloadable-content" class=" my-5">
+        <h2 class="text-center my-4">Downloads</h2>
+        <div class="row g-3 justify-content-center mb-3">
+            <div class="col-12 col-md-6 col-xl-4 text-center">
+                <a href="https://drive.google.com/file/d/1KtrHfsqBoBpPaXK-NfB8rGd09U1SFCZZ/view?usp=drive_link" class="btn btn-dark" download target="_blank" rel="noopener noreferrer">
+                    <i class="fa-solid fa-file-archive me-2"></i>Download images
+                </a>
+            </div>
+        </div>  
+
+    <section id="portfolio-thumbs" class="container section my-5">
+        <h2 class="text-center mb-4">Poquito</h2>
+        <div class="row g-3" role="list">
+            <div class="col-6 col-sm-4 col-md-3" role="listitem">
+                <button type="button" class="btn btn-link p-0 w-100" data-bs-toggle="modal" data-bs-target="#portfolioModal"
+                    data-bs-image="assets/images/1.avif" data-bs-title="1">
+                    <img src="assets/images/1.avif" class="img-fluid rounded" alt="Thumbnail for Project 1" loading="lazy">
+                </button>
+            </div>
+
+            <div class="col-6 col-sm-4 col-md-3" role="listitem">
+                <button type="button" class="btn btn-link p-0 w-100" data-bs-toggle="modal" data-bs-target="#portfolioModal"
+                    data-bs-image="assets/images/2.avif" data-bs-title="2">
+                    <img src="assets/images/2.avif" class="img-fluid rounded" alt="Thumbnail for Project 2" loading="lazy">
+                </button>
+            </div>
+
+            <div class="col-6 col-sm-4 col-md-3" role="listitem">
+                <button type="button" class="btn btn-link p-0 w-100" data-bs-toggle="modal" data-bs-target="#portfolioModal"
+                    data-bs-image="assets/images/3.avif" data-bs-title="3">
+                    <img src="assets/images/3.avif" class="img-fluid rounded" alt="Thumbnail for Project 3" loading="lazy">
+                </button>
+            </div>
+
+            <div class="col-6 col-sm-4 col-md-3" role="listitem">
+                <button type="button" class="btn btn-link p-0 w-100" data-bs-toggle="modal" data-bs-target="#portfolioModal"
+                    data-bs-image="assets/images/4.avif" data-bs-title="4">
+                    <img src="assets/images/4.avif" class="img-fluid rounded" alt="Thumbnail for Project 4" loading="lazy">
+                </button>
+            </div>
+
+            <div class="col-6 col-sm-4 col-md-3" role="listitem">
+                <button type="button" class="btn btn-link p-0 w-100" data-bs-toggle="modal" data-bs-target="#portfolioModal"
+                    data-bs-image="assets/images/5.avif" data-bs-title="5">
+                    <img src="assets/images/5.avif" class="img-fluid rounded" alt="Thumbnail for Project 5" loading="lazy">
+                </button>
+            </div>
+
+            <div class="col-6 col-sm-4 col-md-3" role="listitem">
+                <button type="button" class="btn btn-link p-0 w-100" data-bs-toggle="modal" data-bs-target="#portfolioModal"
+                    data-bs-image="assets/images/6.avif" data-bs-title="6">
+                    <img src="assets/images/6.avif" class="img-fluid rounded" alt="Thumbnail for Project 6" loading="lazy">
+                </button>
+            </div>
+
+            <div class="col-6 col-sm-4 col-md-3" role="listitem">
+                <button type="button" class="btn btn-link p-0 w-100" data-bs-toggle="modal" data-bs-target="#portfolioModal"
+                    data-bs-image="assets/images/7.avif" data-bs-title="7">
+                    <img src="assets/images/7.avif" class="img-fluid rounded" alt="Thumbnail for Project 7" loading="lazy">
+                </button>
+            </div>
+
+            <div class="col-6 col-sm-4 col-md-3" role="listitem">
+                <button type="button" class="btn btn-link p-0 w-100" data-bs-toggle="modal" data-bs-target="#portfolioModal"
+                    data-bs-image="assets/images/8.avif" data-bs-title="8">
+                    <img src="assets/images/8.avif" class="img-fluid rounded" alt="Thumbnail for Project 8" loading="lazy">
+                </button>
+            </div>
+
+            <div class="col-6 col-sm-4 col-md-3" role="listitem">
+                <button type="button" class="btn btn-link p-0 w-100" data-bs-toggle="modal" data-bs-target="#portfolioModal"
+                    data-bs-image="assets/images/9.avif" data-bs-title="9">
+                    <img src="assets/images/9.avif" class="img-fluid rounded" alt="Thumbnail for Project 9" loading="lazy">
+                </button>
+            </div>
+
+            <div class="col-6 col-sm-4 col-md-3" role="listitem">
+                <button type="button" class="btn btn-link p-0 w-100" data-bs-toggle="modal" data-bs-target="#portfolioModal"
+                    data-bs-image="assets/images/10.avif" data-bs-title="10">
+                    <img src="assets/images/10.avif" class="img-fluid rounded" alt="Thumbnail for Project 10" loading="lazy">
+                </button>
+            </div>
+
+            <div class="col-6 col-sm-4 col-md-3" role="listitem">
+                <button type="button" class="btn btn-link p-0 w-100" data-bs-toggle="modal" data-bs-target="#portfolioModal"
+                    data-bs-image="assets/images/11.avif" data-bs-title="11">
+                    <img src="assets/images/11.avif" class="img-fluid rounded" alt="Thumbnail for Project 11" loading="lazy">
+                </button>
+            </div>
+
+            <div class="col-6 col-sm-4 col-md-3" role="listitem">
+                <button type="button" class="btn btn-link p-0 w-100" data-bs-toggle="modal" data-bs-target="#portfolioModal"
+                    data-bs-image="assets/images/12.avif" data-bs-title="12">
+                    <img src="assets/images/12.avif" class="img-fluid rounded" alt="Thumbnail for Project 12" loading="lazy">
+                </button>
+            </div>
+
+            <div class="col-6 col-sm-4 col-md-3" role="listitem">
+                <button type="button" class="btn btn-link p-0 w-100" data-bs-toggle="modal" data-bs-target="#portfolioModal"
+                    data-bs-image="assets/images/13.avif" data-bs-title="13">
+                    <img src="assets/images/13.avif" class="img-fluid rounded" alt="Thumbnail for Project 13" loading="lazy">
+                </button>
+            </div>
+
+            <div class="col-6 col-sm-4 col-md-3" role="listitem">
+                <button type="button" class="btn btn-link p-0 w-100" data-bs-toggle="modal" data-bs-target="#portfolioModal"
+                    data-bs-image="assets/images/14.avif" data-bs-title="14">
+                    <img src="assets/images/14.avif" class="img-fluid rounded" alt="Thumbnail for Project 14" loading="lazy">
+                </button>
+            </div>
+
+            <div class="col-6 col-sm-4 col-md-3" role="listitem">
+                <button type="button" class="btn btn-link p-0 w-100" data-bs-toggle="modal" data-bs-target="#portfolioModal"
+                    data-bs-image="assets/images/15.avif" data-bs-title="15">
+                    <img src="assets/images/15.avif" class="img-fluid rounded" alt="Thumbnail for Project 15" loading="lazy">
+                </button>
+            </div>
+
+            <div class="col-6 col-sm-4 col-md-3" role="listitem">
+                <button type="button" class="btn btn-link p-0 w-100" data-bs-toggle="modal" data-bs-target="#portfolioModal"
+                    data-bs-image="assets/images/16.avif" data-bs-title="16">
+                    <img src="assets/images/16.avif" class="img-fluid rounded" alt="Thumbnail for Project 16" loading="lazy">
+                </button>
+            </div>
+
+            <div class="col-6 col-sm-4 col-md-3" role="listitem">
+                <button type="button" class="btn btn-link p-0 w-100" data-bs-toggle="modal" data-bs-target="#portfolioModal"
+                    data-bs-image="assets/images/17.avif" data-bs-title="17">
+                    <img src="assets/images/17.avif" class="img-fluid rounded" alt="Thumbnail for Project 17" loading="lazy">
+                </button>
+            </div>
+
+            <div class="col-6 col-sm-4 col-md-3" role="listitem">
+                <button type="button" class="btn btn-link p-0 w-100" data-bs-toggle="modal" data-bs-target="#portfolioModal"
+                    data-bs-image="assets/images/18.avif" data-bs-title="18">
+                    <img src="assets/images/18.avif" class="img-fluid rounded" alt="Thumbnail for Project 18" loading="lazy">
+                </button>
+            </div>
+
+            <div class="col-6 col-sm-4 col-md-3" role="listitem">
+                <button type="button" class="btn btn-link p-0 w-100" data-bs-toggle="modal" data-bs-target="#portfolioModal"
+                    data-bs-image="assets/images/19.avif" data-bs-title="19">
+                    <img src="assets/images/19.avif" class="img-fluid rounded" alt="Thumbnail for Project 19" loading="lazy">
+                </button>
+            </div>
+
+            <div class="col-6 col-sm-4 col-md-3" role="listitem">
+                <button type="button" class="btn btn-link p-0 w-100" data-bs-toggle="modal" data-bs-target="#portfolioModal"
+                    data-bs-image="assets/images/20.avif" data-bs-title="20">
+                    <img src="assets/images/20.avif" class="img-fluid rounded" alt="Thumbnail for Project 20" loading="lazy">
+                </button>
+            </div>
+
+            <div class="col-6 col-sm-4 col-md-3" role="listitem">
+                <button type="button" class="btn btn-link p-0 w-100" data-bs-toggle="modal" data-bs-target="#portfolioModal"
+                    data-bs-image="assets/images/21.avif" data-bs-title="21">
+                    <img src="assets/images/21.avif" class="img-fluid rounded" alt="Thumbnail for Project 21" loading="lazy">
+                </button>
+            </div>
+
+            <div class="col-6 col-sm-4 col-md-3" role="listitem">
+                <button type="button" class="btn btn-link p-0 w-100" data-bs-toggle="modal" data-bs-target="#portfolioModal"
+                    data-bs-image="assets/images/22.avif" data-bs-title="22">
+                    <img src="assets/images/22.avif" class="img-fluid rounded" alt="Thumbnail for Project 22" loading="lazy">
+                </button>
+            </div>
+
+            <div class="col-6 col-sm-4 col-md-3" role="listitem">
+                <button type="button" class="btn btn-link p-0 w-100" data-bs-toggle="modal" data-bs-target="#portfolioModal"
+                    data-bs-image="assets/images/23.avif" data-bs-title="23">
+                    <img src="assets/images/23.avif" class="img-fluid rounded" alt="Thumbnail for Project 23" loading="lazy">
+                </button>
+            </div>
+
+            <div class="col-6 col-sm-4 col-md-3" role="listitem">
+                <button type="button" class="btn btn-link p-0 w-100" data-bs-toggle="modal" data-bs-target="#portfolioModal"
+                    data-bs-image="assets/images/24.avif" data-bs-title="24">
+                    <img src="assets/images/24.avif" class="img-fluid rounded" alt="Thumbnail for Project 24" loading="lazy">
+                </button>
+            </div>
+
+            <div class="col-6 col-sm-4 col-md-3" role="listitem">
+                <button type="button" class="btn btn-link p-0 w-100" data-bs-toggle="modal" data-bs-target="#portfolioModal"
+                    data-bs-image="assets/images/25.avif" data-bs-title="25">
+                    <img src="assets/images/25.avif" class="img-fluid rounded" alt="Thumbnail for Project 25" loading="lazy">
+                </button>
+            </div>
+
+            
+            
+        </div>
+
+        <!-- Modal to show larger images as a gallery -->
+        <div class="modal fade" id="portfolioModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-xl modal-fullscreen-sm-down">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body p-0">
+                        <div id="portfolioGallery" class="carousel slide" data-bs-ride="false">
+                            <div class="carousel-indicators"></div>
+                            <div class="carousel-inner"></div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#portfolioGallery" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#portfolioGallery" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            (function () {
+                var portfolioSection = document.getElementById('portfolio-thumbs');
+                var modalEl = document.getElementById('portfolioModal');
+                var galleryEl = document.getElementById('portfolioGallery');
+                var indicatorsEl = galleryEl.querySelector('.carousel-indicators');
+                var innerEl = galleryEl.querySelector('.carousel-inner');
+                var buttons = Array.prototype.slice.call(portfolioSection.querySelectorAll('button[data-bs-image]'));
+
+                if (!modalEl || !galleryEl || !buttons.length) return;
+
+                buttons.forEach(function (button, index) {
+                    var imgSrc = button.getAttribute('data-bs-image') || '';
+                    var title = button.getAttribute('data-bs-title') || 'Image ' + (index + 1);
+                    var img = button.querySelector('img');
+                    var altText = img ? img.getAttribute('alt') || title : title;
+
+                    var indicator = document.createElement('button');
+                    indicator.type = 'button';
+                    indicator.setAttribute('data-bs-target', '#portfolioGallery');
+                    indicator.setAttribute('data-bs-slide-to', index);
+                    indicator.setAttribute('aria-label', title);
+                    if (index === 0) {
+                        indicator.className = 'active';
+                        indicator.setAttribute('aria-current', 'true');
+                    }
+                    indicatorsEl.appendChild(indicator);
+
+                    var item = document.createElement('div');
+                    item.className = 'carousel-item' + (index === 0 ? ' active' : '');
+                    item.innerHTML = '<img src="' + imgSrc + '" class="d-block mx-auto img-fluid rounded" alt="' + altText + '" style="max-height:90vh; width:auto; object-fit:contain;">' +
+                        '<div class="carousel-caption d-none d-md-block"><h5>' + title + '</h5></div>';
+                    innerEl.appendChild(item);
+                });
+
+                modalEl.addEventListener('show.bs.modal', function (event) {
+                    var trigger = event.relatedTarget;
+                    var index = buttons.indexOf(trigger);
+                    if (index < 0) index = 0;
+
+                    var carousel = bootstrap.Carousel.getOrCreateInstance(galleryEl, { ride: false });
+                    carousel.to(index);
+                    modalEl.querySelector('.modal-title').textContent = trigger.getAttribute('data-bs-title') || '';
+                });
+            })();
+        </script>
+    </section>
+
+   
+
+   
+
+        <!-- Footer -->
+
+        <section id="footer" class="container-fluid section">
+          <footer class="mt-auto">
+            <div class="row justify-content-center">
+            <div class="container section">
+                <div class="text-center my-3">
+                  <h3 class="mb-3">Contact info</h3>
+                  <p><i class="fa-solid fa-at"></i> info@lumeandlens.co.uk<br>
+                  <i class="fa-solid fa-phone"></i> (44) 456-7890<br>
+                  <i class="fa-solid fa-copyright"></i> Lume & Lens 2026.</p>
+                   <p><i class="fa-solid fa-map-pin"></i>Birmingham, United Kingdom</p>
+                  </div>
+                  <div class="row justify-content-center">
+                    
+                  </div>
+                  </div>
+
+                
+            </div>
+          </footer>
+        </section>
+        
+    </main>
+
+    <!-- Bootstrap 5 JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Font Awesome -->
+    <script
+      src="https://kit.fontawesome.com/5ca234e80d.js"
+      crossorigin="anonymous"
+    ></script>
+    
+
+   <!-- JavaScript code to ensure the Bootstrap mobile navbar collapses when navigating to in-page links -->
+<script>
+    document
+        .querySelectorAll(".navbar-collapse .nav-link")
+        .forEach((link) => {
+            link.addEventListener("click", function (e) {
+                let section = document.querySelector(e.target.getAttribute("href"));
+                if (section) {
+                    e.preventDefault(); // Prevent default anchor click behavior
+                    let navbarHeight = document.querySelector(".navbar-toggler").offsetHeight;
+                    window.scroll({
+                        top: section.offsetTop - navbarHeight, // Adjust for navbar height
+                        behavior: "smooth",
+                    });
+                    document
+                        .querySelector(".navbar-collapse")
+                        .classList.remove("show"); // Collapse navbar
+                }
+            });
+        });
+</script>
+  </body>
+  
+</html>
+
+
+
+
